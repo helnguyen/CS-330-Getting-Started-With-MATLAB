@@ -21,7 +21,7 @@ To install and set up MATLAB on MacOS, you can follow these steps:
 
 ### Installing
 4. **Install MATLAB and Simulink Products**: Click the `Install MATLAB` button. Unzip the downloaded DMG file and double-click it to mount the virtual disk. Then, double-click the executable and follow the prompts to install products. 
-5. **Install Java Runtime**: Native Apple silicon MATLAB requires a Java runtime be installed on your Mac. To get a compatible runtime, install [Amazon Corretto 8](https://www.mathworks.com/support/requirements/apple-silicon.html?s_tid=pi_mpi_macajre_R2023b_maca64)
+5. **Install Java Runtime**: Native Apple Silicon MATLAB requires a Java runtime be installed on your Mac. To get a compatible runtime, install [Amazon Corretto 8](https://www.mathworks.com/support/requirements/apple-silicon.html?s_tid=pi_mpi_macajre_R2023b_maca64)
 
 ### Writing "Hello World!" Program
 
@@ -68,9 +68,12 @@ The below keywords cannot be used for naming variables or constants in MATLAB.
 
 ### Naming Conventions:
    - MATLAB is case-sensitive
-   - Variable names are created from alphanumeric characters and should be written in lowercase with words separated by underscores (snake_case). Camel case is also used but less common (camelCase).
-   - Variable names cannot start with a number. They must begin with a letter or an underscore.
-   - Naming conventions typically use lowercase letters with underscores to separate words (e.g., `my_variable_name`). Camel case (e.g., `myVariableName`) is also used but less common.
+   - Structure names should begin with a capital letter.
+   - Named constants (including globals) should be all uppercase using underscore to separate words.
+   - Names of functions should be written in lower case.
+   - Variable names should be in mixed case starting with lower case. Varibles could also be written in lowercase with words separated by underscores (snake_case). 
+   - Variable names must start with a letter, followed by letters, digits, or underscores.
+   - Acronyms, even if normally uppercase, should be mixed or lower case.
 
 
 ### Data Types   
@@ -96,15 +99,15 @@ myMap('key1') = 'value1';
 myMap('key2') = 'value2';
 ```
 
-### MATLAB is Mutable
-In MATLAB, all variables are mutable. MATLAB follows a mutable variable model, which is common in dynamically typed languages.
-
 ### MATLAB is Dynamically Typed 
 ``` matlab
 x = 10;
 x = 'Hello';
 display(x); % display hello
 ```
+### MATLAB is Mutable
+MATLAB follows a mutable variable model, which is common in dynamically typed languages.
+
 ### MATLAB is Weakly Typed
 ```matlab
 x = 5;
@@ -142,7 +145,7 @@ result = '5' + 2; % Implicitly converts '5' to 5 (numeric)
 | Logical Operators | & , | , && , || , ~ |
 
 
-**Mixed Type Operations**: MATLAB allows mixed-type operations. When performing operations involving different data types, MATLAB will automatically promote the data types to the most compatible type for the operation. This can sometimes lead to unexpected results if not handled carefully.
+**Mixed Type Operations**: MATLAB allows mixed-type operations. When performing operations involving different data types, the program will automatically promote the data types to the most compatible type for the operation. This can sometimes lead to unexpected results if not handled carefully.
 ```matlab
 % Mixed type operation
 a = 5;
@@ -152,17 +155,17 @@ c = a + b; % Mixed type operation, c will be automatically promoted to a double
 
 ### Binding of Identifiers and Operators:
 
-**Binding of Identifiers:**
+**Identifiers:**
    - Variable names, function names, and class names are bound during the parsing phase. When MATLAB parses a script or function, it identifies and associates identifiers with their corresponding objects in the current scope.
    - Identifiers are bound to their respective values, memory addresses, and types at this stage.
 
-**Binding of Operators:**
+**Operators:**
    - Operators in MATLAB are predefined and have fixed meanings associated with them. The binding of operators occurs during the evaluation of expressions.
    - MATLAB evaluates expressions using operator precedence and associativity rules. This determines the order in which operators are applied to operands.
 
 ```matlab
 % Binding of Identifiers
-x = 10;        % 'x' is bound to the value 10 and its data type (double)
+x = 10; % 'x' is bound to the value 10 and its data type (double)
 function y = myFunction(a, b)
     y = a + b; % 'myFunction' is bound to the function definition
 end
