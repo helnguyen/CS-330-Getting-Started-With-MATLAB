@@ -158,6 +158,93 @@ c = a + b; % Mixed type operation, c will be automatically promoted to a double
 ```
 
 
+# Loops & Subroutinue 
+
+## Loops
+
+MATLAB supports `while` loops and `for` loops. It doesn't have built-in `do/while` or `foreach` loops. However, you can achieve similar functionality with `for` loops and iterate through elements.
+
+### While Loop:
+   In MATLAB, the standard while loop works by first checking the condition before execution. The code ensures that the code block inside the loop runs at least once using a seperate condition.
+   ```matlab
+   count = 1;
+   while count <= 5
+       disp(count);
+       count = count + 1;
+   end
+   ```
+
+### For Loop:
+
+   MATLAB for loop iterates through a range of values, and you can use it as previously shown. for loop is more suitable for iterating through a predefined range of values, and the loop condition is based on this range. 
+   
+   ```matlab
+   for i = 1:5
+       disp(i);
+   end
+   ```
+
+   You can also iterate through elements of an array or cell array using `for` loops.
+
+## Functions 
+
+
+### Function Declaration Syntax:
+
+In MATLAB, you declare functions with the following syntax:
+
+   ```matlab
+   function output = functionName(input1, input2)
+       % Function body
+   end
+   ```
+
+### Function Placement Rules:
+
+   Functions should be placed in separate files with the same name as the function. The function file should be located in the same directory as the script calling the function.
+
+### Recursive Functions:
+
+MATLAB supports recursive functions. Here's an example of a factorial function:
+
+   ```matlab
+   function result = factorial(n)
+       if n <= 1
+           result = 1;
+       else
+           result = n * factorial(n - 1);
+       end
+   end
+   ```
+
+### Functions with Multiple Parameters and Data Types:
+
+   MATLAB functions can accept multiple parameters, and these parameters can be of different data types.
+
+### Functions Returning Multiple Values:
+
+   MATLAB functions can return multiple values by encapsulating them in square brackets:
+
+   ```matlab
+   function [output1, output2] = multiValueFunction(input1, input2)
+       % Function body
+       output1 = someValue1;
+       output2 = someValue2;
+   end
+   ```
+
+### Pass-by Reference or Value:
+
+   MATLAB uses a combination of pass-by-value and pass-by-reference. When you pass a variable to a function, the function receives a copy of the variable, but MATLAB optimizes memory usage with copy-on-write mechanisms.
+
+### Storage of Arguments, Parameters, and Local Variables: 
+
+   Variables and data are stored in MATLAB's workspace, and their specific storage locations are optimized by MATLAB's memory management.
+
+### Scoping Rule: 
+
+   MATLAB uses function-level scoping, meaning that variables defined within a function are local to that function.
+
 
 [1] https://www.mathworks.com/company/newsletters/articles/a-brief-history-of-matlab.html \
 [2] https://dl.acm.org/doi/10.1145/3386331 \
