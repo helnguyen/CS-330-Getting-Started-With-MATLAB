@@ -165,7 +165,7 @@ c = a + b; % Mixed type operation, c will be automatically promoted to a double
 MATLAB supports `while` loops and `for` loops. It doesn't have built-in `do/while` or `foreach` loops. However, you can achieve similar functionality with `for` loops and iterate through elements.
 
 ### While Loop:
-   In MATLAB, the standard while loop works by first checking the condition before execution. The code ensures that the code block inside the loop runs at least once using a seperate condition.
+In MATLAB, the standard while loop works by first checking the condition before execution. The code ensures that the code block inside the loop runs at least once using a seperate condition.
    ```matlab
    count = 1;
    while count <= 5
@@ -176,7 +176,7 @@ MATLAB supports `while` loops and `for` loops. It doesn't have built-in `do/whil
 
 ### For Loop:
 
-   MATLAB for loop iterates through a range of values, and you can use it as previously shown. for loop is more suitable for iterating through a predefined range of values, and the loop condition is based on this range. 
+MATLAB for loop iterates through a range of values, and you can use it as previously shown. for loop is more suitable for iterating through a predefined range of values, and the loop condition is based on this range. 
    
    ```matlab
    for i = 1:5
@@ -184,28 +184,40 @@ MATLAB supports `while` loops and `for` loops. It doesn't have built-in `do/whil
    end
    ```
 
-   You can also iterate through elements of an array or cell array using `for` loops.
 
 ## Functions 
 
 
 ### Function Declaration Syntax:
 
-In MATLAB, you declare functions with the following syntax:
+In MATLAB, a typical function declaration includes the `function` keyword followed by the output variable(s) and the input parameters enclosed in parentheses. The function body is encapsulated within the `function` block.
 
-   ```matlab
-   function output = functionName(input1, input2)
-       % Function body
-   end
-   ```
+Here's an example of a simple MATLAB function declaration:
+
+```matlab
+function output = myFunction(input1, input2)
+    % Function body
+    output = input1 + input2;
+end
+```
+
+In the example above, `myFunction` is a MATLAB function that takes two input parameters, `input1` and `input2`, and returns a result stored in the `output` variable.
+
+MATLAB functions can also be created without input arguments and curly brackets for simple, one-liner operations. Here's an example of such a function:
+
+```matlab
+function result = addTwoNumbers(a, b)
+    result = a + b;
+end
+```
 
 ### Function Placement Rules:
 
-   Functions should be placed in separate files with the same name as the function. The function file should be located in the same directory as the script calling the function.
+   Functions should be placed in separate files with the same name as the function. The function file should be located in the same directory as the script calling the function. This naming and location convention helps MATLAB identify and execute functions when they are called from other scripts or functions.
 
 ### Recursive Functions:
 
-MATLAB supports recursive functions. Here's an example of a factorial function:
+MATLAB supports recursive functions. Recursive functions are useful for solving problems that can be broken down into smaller, similar sub-problems. In the example provided, a factorial function calculates the factorial of a number 'n' recursively. It checks a base case (n <= 1) and then calls itself with a smaller argument (n - 1) until the base case is reached. Here's an example of a factorial function:
 
    ```matlab
    function result = factorial(n)
@@ -219,11 +231,11 @@ MATLAB supports recursive functions. Here's an example of a factorial function:
 
 ### Functions with Multiple Parameters and Data Types:
 
-   MATLAB functions can accept multiple parameters, and these parameters can be of different data types.
+   MATLAB functions can accept multiple parameters, and these parameters can be of different data types. This flexibility allows you to pass various types of data to functions, making them versatile and suitable for a wide range of applications. You can have input parameters that are numbers, strings, arrays, or any other data type.
 
 ### Functions Returning Multiple Values:
 
-   MATLAB functions can return multiple values by encapsulating them in square brackets:
+  MATLAB functions can return multiple values by encapsulating them in square brackets and separating them with commas. This feature is handy when you want to return more than one result from a function. In the provided example, a function named multiValueFunction returns two values, output1 and output2. These values can be of different data types, and they can be used in the calling code for further processing or analysis.
 
    ```matlab
    function [output1, output2] = multiValueFunction(input1, input2)
@@ -235,15 +247,26 @@ MATLAB supports recursive functions. Here's an example of a factorial function:
 
 ### Pass-by Reference or Value:
 
-   MATLAB uses a combination of pass-by-value and pass-by-reference. When you pass a variable to a function, the function receives a copy of the variable, but MATLAB optimizes memory usage with copy-on-write mechanisms.
+   MATLAB uses a combination of pass-by-value and pass-by-reference. When you pass a variable to a function, the function receives a copy of the variable, but MATLAB optimizes memory usage with copy-on-write mechanisms. This means vlues are passed by reference by value. When you pass an argument to a function, you're passing a reference to the original data in memory, allowing modifications to affect the original data outside the function. This is a combination of pass-by-reference and pass-by-value semantics.
+  ```matlab
+function modifiedValue = modifyValue(inputValue)
+    inputValue = inputValue * 2;
+    modifiedValue = inputValue;
+end
 
+originalValue = 5;
+result = modifyValue(originalValue);
+disp(originalValue); % The value of originalValue is still 5
+disp(result); % The value of result is 10
+   ```
 ### Storage of Arguments, Parameters, and Local Variables: 
-
-   Variables and data are stored in MATLAB's workspace, and their specific storage locations are optimized by MATLAB's memory management.
+In MATLAB, arguments, parameters, and local variables are typically stored in memory, and their storage location depends on their scope and lifetime. Function arguments are stored in memory when a function is called, and they are typically placed on the stack. Parameters are local variables within the function, and they also reside on the stack, where their memory space is allocated during the function call. Local variables declared within a function are similarly stored on the stack, and their memory is allocated when the function is executed. The stack is a region of memory specifically designated for function call management, ensuring that arguments, parameters, and local variables are efficiently managed during program execution. This stack-based memory allocation allows MATLAB to handle the creation and destruction of variables and data structures with scope limited to their respective function or block.
 
 ### Scoping Rule: 
+Scoping rules in programming dictate the boundaries within which variables can be accessed and how they interact with other variables. There are two main types of scope: local and global. In local scope, variables are confined to specific blocks or functions and cannot be accessed from outside those boundaries. Global scope, on the other hand, allows variables to be accessed from anywhere within the program, including within functions or blocks.
 
-   MATLAB uses function-level scoping, meaning that variables defined within a function are local to that function.
+### Side Effects:
+Side effects in programming refer to unintended and often undesirable changes that occur during the execution of a program or function. These changes can affect the state of variables and data, potentially leading to unexpected or unpredictable behavior. Common examples of side effects include modifying variables unintentionally, producing excessive console output that clutters the program's output, and performing file operations without proper validation and handling. Avoiding side effects is considered a best practice as it makes code more predictable and easier to maintain. Functions that have no side effects and only produce output based on their inputs are known as "pure functions" and are easier to reason about.
 
 
 [1] https://www.mathworks.com/company/newsletters/articles/a-brief-history-of-matlab.html \
